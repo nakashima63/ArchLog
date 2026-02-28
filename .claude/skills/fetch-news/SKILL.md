@@ -107,20 +107,31 @@ bash .claude/skills/fetch-news/scripts/security_check.sh docs
 2. 再度検査を実行する
 3. すべてパスするまで繰り返す
 
-### Step 4: mkdocs.yml のナビゲーション更新
+### Step 4: ニュース一覧ページの更新
+
+`docs/news/index.md` のテーブルに新しいニュースエントリを追加する。
+日付の降順（新しい日付が上）で行を追加し、カテゴリ列には該当カテゴリをカンマ区切りで記載する。
+
+```markdown
+| 日付 | カテゴリ |
+|------|----------|
+| [YYYY-MM-DD](YYYY-MM-DD.md) | カテゴリ1、カテゴリ2、... |
+```
+
+### Step 5: mkdocs.yml のナビゲーション更新
 
 新しいニュースファイルを `mkdocs.yml` の `nav` セクションに追加する。
 既存のナビゲーション構造を壊さないよう注意する。
 
-### Step 5: コミットとプッシュ
+### Step 6: コミットとプッシュ
 
 1. 変更内容を確認する（`git status`, `git diff`）
-2. ニュースファイルと更新したmkdocs.ymlをステージングする
+2. ニュースファイル、index.md、更新したmkdocs.ymlをステージングする
 3. コミットメッセージは `docs: add tech news for YYYY-MM-DD` とする
 4. **ユーザーに確認してからプッシュする**
 
 ```bash
-git add docs/news/YYYY-MM-DD.md mkdocs.yml
+git add docs/news/YYYY-MM-DD.md docs/news/index.md mkdocs.yml
 git commit -m "docs: add tech news for YYYY-MM-DD"
 ```
 
