@@ -1,7 +1,7 @@
 site_name: ArchLog
 site_description: システムアーキテクト向け技術ニュースアグリゲーター
-site_url: ""
-repo_url: ""
+site_url: https://nakashima63.github.io/ArchLog/
+repo_url: https://github.com/nakashima63/ArchLog
 
 theme:
   name: material
