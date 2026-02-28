@@ -1,0 +1,25 @@
+# MkDocs build
+site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Secrets (must never be committed)
+.env
+.env.*
+*.pem
+*.key
+credentials.*
+*secret*

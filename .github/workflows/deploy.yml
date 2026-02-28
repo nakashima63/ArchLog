@@ -1,0 +1,73 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # セキュリティ検査を先に実行
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run security check on docs
+        run: bash .claude/skills/fetch-news/scripts/security_check.sh docs
+
+      - name: Check for large files (>1MB)
+        run: |
+          LARGE_FILES=$(find docs -name '*.md' -size +1M 2>/dev/null || true)
+          if [ -n "$LARGE_FILES" ]; then
+            echo "::error::Large markdown files detected (>1MB):"
+            echo "$LARGE_FILES"
+            exit 1
+          fi
+          echo "OK - No oversized files"
+
+      - name: Validate markdown links format
+        run: |
+          if grep -rPn 'https?://[^)]*[:@].*[:@]' docs/ --include='*.md' 2>/dev/null; then
+            echo "::error::URL with embedded credentials detected"
+            exit 1
+          fi
+          echo "OK - No credential URLs"
+
+  # セキュリティ検査が成功した場合のみビルド・デプロイ
+  build:
+    needs: security-scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build MkDocs site
+        run: mkdocs build --strict
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

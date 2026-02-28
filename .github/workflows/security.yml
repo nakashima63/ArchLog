@@ -1,0 +1,38 @@
+name: Security Check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+permissions:
+  contents: read
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run security check on docs
+        run: bash .claude/skills/fetch-news/scripts/security_check.sh docs
+
+      - name: Check for large files (>1MB)
+        run: |
+          LARGE_FILES=$(find docs -name '*.md' -size +1M 2>/dev/null || true)
+          if [ -n "$LARGE_FILES" ]; then
+            echo "::error::Large markdown files detected (>1MB):"
+            echo "$LARGE_FILES"
+            exit 1
+          fi
+          echo "OK - No oversized files"
+
+      - name: Validate markdown links format
+        run: |
+          # Ensure no bare credential-like URLs
+          if grep -rPn 'https?://[^)]*[:@].*[:@]' docs/ --include='*.md' 2>/dev/null; then
+            echo "::error::URL with embedded credentials detected"
+            exit 1
+          fi
+          echo "OK - No credential URLs"

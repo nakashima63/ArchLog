@@ -1,0 +1,48 @@
+site_name: ArchLog
+site_description: システムアーキテクト向け技術ニュースアグリゲーター
+site_url: ""
+repo_url: ""
+
+theme:
+  name: material
+  language: ja
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: ライトモードに切り替え
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: ダークモードに切り替え
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search:
+      lang: ja
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+
+nav:
+  - Home: index.md
+  - News: news/
