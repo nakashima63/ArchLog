@@ -18,27 +18,40 @@ allowed-tools: WebSearch, WebFetch, Write, Read, Glob, Grep, Bash(bash *), Bash(
 
 **検索領域（優先順）:**
 
+各領域について **日本語クエリを先に実行** し、日本語記事を優先的に収集する。
+日本語で十分な記事が見つからない領域のみ英語クエリで補完する。
+最終的な記事の **日本語:英語 の比率は 6:4〜7:3** を目安にする。
+
 1. **AWS / クラウド設計** — ネットワーク、セキュリティ、可用性、コスト最適化、運用
-   - 検索例: `AWS new features 2026`, `cloud architecture best practices 2026`
+   - 日本語: `AWS 新機能 アップデート 2026`, `クラウド アーキテクチャ 設計 2026`
+   - 英語: `AWS new features 2026`
 2. **アーキテクチャパターン** — DDD、Hexagonal Architecture、CQRS、Event Sourcing、マイクロサービス、モノリス分割
-   - 検索例: `DDD domain driven design architecture 2026`, `microservices patterns 2026`
+   - 日本語: `DDD ドメイン駆動設計 2026`, `マイクロサービス アーキテクチャ 設計 2026`
+   - 英語: `microservices CQRS event sourcing 2026`
 3. **分散システム基礎** — CAP定理、整合性、キュー/ストリーム、リトライ戦略、冪等性、SLO/SLI
-   - 検索例: `distributed systems reliability 2026`, `SLO SLI observability 2026`
+   - 日本語: `分散システム 信頼性 SRE 2026`, `SLO SLI 可観測性 2026`
+   - 英語: `distributed systems reliability 2026`
 4. **インフラ / IaC** — Terraform、CDK、CloudFormation、Kubernetes
-   - 検索例: `Terraform CDK infrastructure as code 2026`, `Kubernetes updates 2026`
+   - 日本語: `Terraform CDK インフラ 構成管理 2026`, `Kubernetes 最新 2026`
+   - 英語: `infrastructure as code updates 2026`
 5. **観測性** — ログ、メトリクス、トレース、OpenTelemetry
-   - 検索例: `OpenTelemetry observability 2026`, `distributed tracing best practices`
+   - 日本語: `OpenTelemetry 可観測性 オブザーバビリティ 2026`, `分散トレーシング 2026`
+   - 英語: `OpenTelemetry observability 2026`
 6. **セキュリティ** — ゼロトラスト、IAM設計、脅威モデリング、OWASP
-   - 検索例: `zero trust architecture 2026`, `cloud security IAM 2026`
+   - 日本語: `ゼロトラスト クラウドセキュリティ 2026`, `IAM 設計 セキュリティ 2026`
+   - 英語: `zero trust cloud security 2026`
 7. **データ基盤** — RDB設計、NoSQL選定、キャッシュ戦略、検索、ETL/ELT
-   - 検索例: `database architecture 2026`, `data engineering ETL 2026`
+   - 日本語: `データベース設計 データ基盤 2026`, `データエンジニアリング ETL 2026`
+   - 英語: `database architecture data engineering 2026`
 8. **重要なリリース/アップデート** — AWS公式ブログ、主要OSSリリースノート
-   - 検索例: `AWS blog announcements 2026`, `open source releases 2026`
+   - 日本語: `AWS 公式ブログ アップデート 2026`, `OSS リリース 新機能 2026`
+   - 英語: `AWS blog announcements 2026`
 
 **検索のコツ:**
 - 現在の年月を検索クエリに含める
-- 英語と日本語の両方で検索する
-- 公式ブログ、技術ブログ、カンファレンス発表を優先する
+- **日本語クエリを各領域で必ず1回以上実行する**（日本語記事の割合を確保するため）
+- 英語記事は日本語で見つからない領域の補完に使う
+- 日本語ソースの優先順: AWS公式日本語ブログ、Zenn、Qiita、DevelopersIO(クラスメソッド)、技術評論社、はてなブログ(技術系)、Publickey、ThinkIT
 
 ### Step 2: Markdownファイルの生成
 
