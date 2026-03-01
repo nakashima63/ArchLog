@@ -47,4 +47,5 @@ nav:
   - Home: index.md
   - News:
       - news/index.md
+      - 2026-03-01: news/2026-03-01.md
       - 2026-02-28: news/2026-02-28.md
