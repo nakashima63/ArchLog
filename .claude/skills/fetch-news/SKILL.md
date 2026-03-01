@@ -53,6 +53,33 @@ allowed-tools: WebSearch, WebFetch, Write, Read, Glob, Grep, Bash(bash *), Bash(
 - 英語記事は日本語で見つからない領域の補完に使う
 - 日本語ソースの優先順: AWS公式日本語ブログ、Zenn、Qiita、DevelopersIO(クラスメソッド)、技術評論社、はてなブログ(技術系)、Publickey、ThinkIT
 
+### Step 1.5: connpassイベント収集
+
+connpassで**直近1ヶ月以内に開催予定**のアーキテクト・AI関連イベントをWebSearchで検索する。
+以下のクエリを実行し、合計5〜10件程度のイベントを収集する。
+
+**検索クエリ:**
+- `connpass アーキテクチャ 設計 イベント YYYY年M月`
+- `connpass AI LLM エージェント イベント YYYY年M月`
+- `connpass AWS クラウド インフラ イベント YYYY年M月`
+- `connpass SRE 可観測性 マイクロサービス イベント YYYY年M月`
+- `connpass セキュリティ ゼロトラスト DevSecOps イベント YYYY年M月`
+- `connpass GenAI 生成AI YYYY年M月`
+
+**収集対象のイベントカテゴリ:**
+- クラウド / AWS（JAWS-UGなど）
+- アーキテクチャ / 設計
+- SRE / 信頼性
+- インフラ / IaC（HashiCorp、Kubernetes関連など）
+- セキュリティ / ゼロトラスト
+- AI / LLM / エージェント
+- データエンジニアリング
+
+**選定基準:**
+- connpass上のイベントページURLが確認できるもの
+- 開催日が収集日から1ヶ月以内のもの
+- システムアーキテクトやエンジニアに関連性が高いもの
+
 ### Step 2: Markdownファイルの生成
 
 収集した記事を以下の形式でMarkdownファイルに書き出す。
@@ -75,6 +102,14 @@ allowed-tools: WebSearch, WebFetch, Write, Read, Glob, Grep, Bash(bash *), Bash(
 ## 分散システム
 
 （以下同様、該当カテゴリのみ）
+
+## 注目イベント（connpass）
+
+直近開催予定のアーキテクト・AI関連イベントをピックアップ。
+
+| 日付 | イベント名 | カテゴリ |
+|------|-----------|----------|
+| MM/DD (曜) | [イベント名](connpass URL) | カテゴリ |
 
 ---
 
