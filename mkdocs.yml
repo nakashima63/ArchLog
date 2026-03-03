@@ -43,6 +43,9 @@ markdown_extensions:
       custom_checkbox: true
   - attr_list
 
+extra_javascript:
+  - javascripts/external-links.js
+
 nav:
   - Home: index.md
   - News:
