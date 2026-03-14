@@ -50,6 +50,7 @@ nav:
   - Home: index.md
   - News:
       - news/index.md
+      - 2026-03-10: news/2026-03-10.md
       - 2026-03-04: news/2026-03-04.md
       - 2026-03-03: news/2026-03-03.md
       - 2026-03-02: news/2026-03-02.md
